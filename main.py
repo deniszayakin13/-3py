@@ -12,7 +12,7 @@ def get_books(file_name):
 
     return list(map(parse_line, lines[1:]))
 
-get_books("books.csv")
+get_books(os.path.join(BASE_DIR, "books.csv"))
 input("Нажмите Enter, чтобы выйти...")
 def filtered_books(books, keyword):
     matches = filter(lambda b: keyword.lower() in b[1].lower(), books)
