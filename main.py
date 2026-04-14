@@ -1,19 +1,23 @@
-BASE_DIR = os.path.dirname(os.path.abspath(file))
-def parse_line(line):
-        parts = line.split('|')
-        return [parts[0], parts[1], parts[2], int(parts[3]), float(parts[4])]
+import os
 
-
+# Для Colab — файл лежит в текущей рабочей директории
 def get_books(file_name):
-    with open(file_name, 'r', encoding='utf-8') as f:
+    # Строим путь относительно текущей папки
+    file_path = os.path.join(os.getcwd(), file_name)
+    with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
-
     lines = content.strip().split('\n')
-
     return list(map(parse_line, lines[1:]))
 
-get_books(os.path.join(BASE_DIR, "books.csv"))
-input("Нажмите Enter, чтобы выйти...")
+def parse_line(line):
+    parts = line.split('|')
+    return [parts[0], parts[1], parts[2], int(parts[3]), float(parts[4])]
+
+# Задание 1
+books = get_books("books.csv")
+print("Задание 1:", books[:2])
+
+# Задание 2
 def filtered_books(books, keyword):
     matches = filter(lambda b: keyword.lower() in b[1].lower(), books)
     return list(map(
@@ -21,14 +25,15 @@ def filtered_books(books, keyword):
         matches
     ))
 
-books = get_books("books.csv")
 result = filtered_books(books, "python")
-print(result)
+print("Задание 2:", result)
+
+# Задание 3
 def books_total(books):
-    return tuple(list(map(
+    return list(map(
         lambda b: (b[0], b[3] * b[4]),
         books
-    )))
-books = get_books("books.csv")  
+    ))
+
 totals = books_total(books)
-print(totals)
+print("Задание 3:", totals[:3])
