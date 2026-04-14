@@ -28,10 +28,10 @@ result = filtered_books(books, "python")
 print("Задание 2:", result)
 
 def books_total(books):
-    return list(map(
+    return tuple(list(map(
         lambda b: (b[0], b[3] * b[4]),
         books
-    ))
+    )))
 
 totals = books_total(books)
 print("Задание 3:", totals[:3])
