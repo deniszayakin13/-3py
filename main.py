@@ -1,3 +1,4 @@
+BASE_DIR = os.path.dirname(os.path.abspath(file))
 def parse_line(line):
         parts = line.split('|')
         return [parts[0], parts[1], parts[2], int(parts[3]), float(parts[4])]
