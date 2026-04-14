@@ -1,18 +1,16 @@
 import os
-import csv
 
-def parse_line(line):
-    parts = line.split('|')
-    return [parts[0], parts[1], parts[2], int(parts[3]), float(parts[4])]
+# Путь к файлу относительно расположения скрипта
+BASE_DIR = os.path.dirname(os.path.abspath("books.csv"))
 
+def parse_row(row):
+    return [row[0], row[1], row[2], int(row[3]), float(row[4])]
 
-def get_books(file_name):
-    script_dir = os.getcwd()  # текущая рабочая директория
-    file_path = os.path.join(script_dir, file_name)
-    with open(file_path, newline='', encoding='utf-8') as f:
-        content = f.read()
-    lines = content.strip().split('\n')
-    return list(map(parse_line, lines[1:]))
+def get_books(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f, delimiter='|')
+        next(reader)
+        return list(map(parse_row, reader))
 
 books = get_books("books.csv")
 print("Задание 1:", books[:2])
@@ -28,12 +26,12 @@ result = filtered_books(books, "python")
 print("Задание 2:", result)
 
 def books_total(books):
-    return tuple(list(map(
+    return list(map(
         lambda b: (b[0], b[3] * b[4]),
         books
-    )))
+    ))
 
 totals = books_total(books)
 print("Задание 3:", totals[:3])
 
-input('Нажмите Enter, чтобы продолжить')
+input('Enter....')
