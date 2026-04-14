@@ -14,7 +14,7 @@ def get_books(file_path):
         return list(map(parse_row, reader))
 
 books = get_books("books.csv")
-print("Задание 1:", books[:2])
+print("Задание 1:", books)
 
 def filtered_books(books, keyword):
     matches = filter(lambda b: keyword.lower() in b[1].lower(), books)
@@ -33,6 +33,6 @@ def books_total(books):
     ))
 
 totals = books_total(books)
-print("Задание 3:", totals[:3])
+print("Задание 3:", totals)
 
 input('Enter....')
