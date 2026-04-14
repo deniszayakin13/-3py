@@ -12,3 +12,4 @@ def get_books(file_name):
     return list(map(parse_line, lines[1:]))
 
 get_books("books.csv")
+input("Нажмите Enter, чтобы выйти...")
