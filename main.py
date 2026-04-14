@@ -1,4 +1,5 @@
 import os
+import csv
 
 # Путь к файлу относительно расположения скрипта
 BASE_DIR = os.path.dirname(os.path.abspath("books.csv"))
