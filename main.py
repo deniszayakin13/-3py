@@ -35,3 +35,5 @@ def books_total(books):
 
 totals = books_total(books)
 print("Задание 3:", totals[:3])
+
+input('Нажмите Enter, чтобы продолжить')
